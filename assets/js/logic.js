@@ -11,7 +11,9 @@ console.table(questions[questioncounter])
 
 function startquiz() {
   var counter = setInterval(mytimer, 1000)
-  questionsection = showquestion(0)
+  questionsection = showquestion()
+
+  
   function mytimer() {
     if (timesection.innerHTML <= 0) {
       clearInterval(counter);
