@@ -10,7 +10,7 @@ console.table(questions[questioncounter])
 
 
 function startquiz() {
-  var counter = setInterval(mytimer, 1000)
+  var counter = setInterval(mytimer, 1500)
   questionsection = showquestion()
 
   
