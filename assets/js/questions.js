@@ -1,5 +1,5 @@
 var questions = [{
-  question_title1: "Commonly used data types DO not Include?",
+  question_title: "Commonly used data types DO not Include?",
 
   answer1: "1.Strings",
   answer2: "2.Booleans",
@@ -11,7 +11,7 @@ var questions = [{
 }
   ,
 {
-  question_title2: "The condition in an if/else statement is enclosed with __________?",
+  question_title: "The condition in an if/else statement is enclosed with __________?",
 
   answer1: "1.quotes",
   answer2: "2.curly brackets",
@@ -23,7 +23,7 @@ var questions = [{
 }
   ,
 {
-  question_title3: "Arrays in JavaScript can be used to store __________.",
+  question_title: "Arrays in JavaScript can be used to store __________.",
 
   answer1: "1.Numbers and strings",
   answer2: "2.other arryas",
@@ -35,7 +35,7 @@ var questions = [{
 }
   ,
 {
-  question_title4: "String values must be enclosed within __________ when being assigned to variables.",
+  question_title: "String values must be enclosed within __________ when being assigned to variables.",
 
   answer1: "1.commas",
   answer2: "2.curly brackets",

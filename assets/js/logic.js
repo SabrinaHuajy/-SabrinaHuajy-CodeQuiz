@@ -4,16 +4,15 @@ var questiontoshow = document.querySelector("#question-title")
 var questionsection = document.querySelector("#questions");
 
 timesection.innerHTML = 100
-var questioncounter = 0
+var questioncounter = -1
+var score = 0
 
 console.table(questions[questioncounter])
 
 
 function startquiz() {
   var counter = setInterval(mytimer, 1500)
-  questionsection = showquestion()
 
-  
   function mytimer() {
     if (timesection.innerHTML <= 0) {
       clearInterval(counter);
@@ -25,17 +24,57 @@ function startquiz() {
 }
 
 function showquestion() {
-  questiontoshow.innerHTML = questions[questioncounter]
+  questioncounter++
+  if (!questions[questioncounter]) {
+    document.querySelector("#questions").classList.add("hide")
+    return showendscreen()
+  }
+
+  console.log("showquestion")
+  document.querySelector("#start-screen").classList.add("hide")
+
+  var questionTitle = document.querySelector("#question-title")
+
+  questionTitle.innerHTML = questions[questioncounter].question_title
+
+  var questionOptions = document.querySelector("#choices")
+  questionOptions.innerHTML = ""
+
+  for (let i = 1; i < 5; i++) {
+    var button = document.createElement("button")
+    button.setAttribute("value", questions[questioncounter][`answer${i}`])
+
+
+    button.setAttribute("class", "choice")
+    button.textContent = questions[questioncounter][`answer${i}`]
+
+    button.addEventListener("click", questionchoice)
+
+    questionOptions.appendChild(button)
+  }
+
+
+  document.querySelector("#questions").classList.remove("hide")
 }
 
+function questionchoice(event) {
+  showquestion()
+}
 
+function showendscreen() {
+  document.querySelector("#end-screen").classList.remove("hide")
 
+}
 
-
-
-
-
-
-
-
+function addscore(event) {
+  event.preventDefault()
+  var initials = document.querySelector("#initials").value
+  var scores = JSON.parse(localStorage.getItem("scores")) || []
+  scores.push({
+    initials,
+    score
+  })
+  localStorage.setItem("scores", JSON.stringify(scores))
+}
+document.querySelector("#submit").addEventListener("click", addscore);
 startbutton.addEventListener("click", startquiz);
