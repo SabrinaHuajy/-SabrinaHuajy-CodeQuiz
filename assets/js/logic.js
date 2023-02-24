@@ -1,3 +1,4 @@
+// var score = document.querySelector("#scores");
 var startbutton = document.querySelector("#start");
 var timesection = document.querySelector("#time");
 var questiontoshow = document.querySelector("#question-title")
@@ -26,9 +27,14 @@ function startquiz() {
 function showquestion() {
   questioncounter++
   if (!questions[questioncounter]) {
+    console.log("hello")
+
     document.querySelector("#questions").classList.add("hide")
     return showendscreen()
   }
+
+  console.log(questioncounter)
+
 
   console.log("showquestion")
   document.querySelector("#start-screen").classList.add("hide")
@@ -59,9 +65,14 @@ function showquestion() {
 
 function questionchoice(event) {
   showquestion()
+  checkAnswers()
+
+  // if (questioncounter === 4) {
+  //   showendscreen()
+  // }
 }
 
-function showendscreen(score) {
+function showendscreen() {
   document.querySelector("#end-screen").classList.remove("hide")
 
 }
@@ -83,37 +94,38 @@ startbutton.addEventListener("click", startquiz);
 
 function checkAnswers() {
 
-  var score = 0
 
-  questions = document.forms.questions.elements;
+  // questions = document.forms.questions.elements;
 
-  correctanswer1 = questions.question_title.value;
+  correctanswer1 = questions[0].correctanswer1;
+  console.log(correctanswer1)
 
   if (correctanswer1 == "4.numbers") {
 
     score = score + 1;
   }
 
-  correctanswer2 = questions.question_title.value;
+  correctanswer2 = questions[1].correctanswer2;
   if (correctanswer2 == "3.parenthesis") {
 
     score = score + 1;
   }
-  correctanswer3 = questions.question_title.value;
+  correctanswer3 = questions[2].correctanswer3;
   if (correctanswer3 == "4.all of the above") {
 
     score = score + 1;
   }
-  correctanswer4 = questions.question_title.value;
+  correctanswer4 = questions[3].correctanswer4;
   if (correctanswer4 == "1.commas") {
     score = score + 1;
   }
+  console.log(score)
+  // showendscreen(score);
 
-  showendscreen(score);
 }
 
 
-function showendscreen(score) {
+// // function showendscreen(score) {
 
-  feedback = document.getElementsByTagName("form")[0]
-}
+//   feedback = document.getElementsByTagName("form")[0]
+// }
