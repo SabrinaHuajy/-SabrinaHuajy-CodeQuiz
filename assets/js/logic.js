@@ -6,11 +6,12 @@ var questionsection = document.querySelector("#questions");
 var answerfeedback = document.querySelector("#feedback");
 let correctBeat = new Audio('../../assets/sfx/correct.wav');
 let wrongBeat = new Audio('../../assets/sfx/incorrect.wav');
-
+let finalscore = document.getElementById("final-score")
+let leaderBoard = document.getElementById("leaderboard")
 
 timesection.innerHTML = 100
 var questioncounter = -1
-// var score = innerHTML.score
+var score = 0
 
 console.table(questions[questioncounter])
 
@@ -34,7 +35,7 @@ function showquestion() {
     // console.log("hello")
 
     document.querySelector("#questions").classList.add("hide")
-    return showendscreen()
+    return showendscreen("final-score")
   }
 
   console.log(questioncounter)
@@ -111,7 +112,9 @@ function questionchoice() {
 function showendscreen() {
   document.querySelector("#end-screen").classList.remove("hide")
   var finalscore = document.getElementById("final-score");
-  finalscore.textContent = time;
+  finalscore.textContent = score + "/4";
+  time = 0
+  score.innerText
 }
 
 function addscore(event) {
@@ -119,7 +122,7 @@ function addscore(event) {
   var initials = document.querySelector("#initials").value
 
   if (initials !== "") {
-    
+
     var highscores =
       JSON.parse(window.localStorage.getItem("highscores")) || [];
 
@@ -167,22 +170,22 @@ function checkAnswers() {
 
   if (correctanswer == "4.numbers") {
 
-    score = score + 1;
+    score = score += 1;
   }
 
   correctanswer = questions[1].correctanswer;
   if (correctanswer == "3.parenthesis") {
 
-    score = score + 1;
+    score = score += 1;
   }
   correctanswer = questions[2].correctanswer;
   if (correctanswer == "4.all of the above") {
 
-    score = score + 1;
+    score = score += 1;
   }
   correctanswer = questions[3].correctanswer;
   if (correctanswer == "1.commas") {
-    score = score + 1;
+    score = score += 1;
   }
   console.log(score)
 
@@ -200,27 +203,58 @@ function printHighscores() {
   // either get scores from localstorage or set to empty array
   var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
 
-  // sort highscores by score property in descending order
-  Highscores.sort(function(a, b) {
-    return b.score - a.score;
-  });
+  function saveInfo(event) {
+    event.preventDefault()
 
-  Highscores.forEach(function(score) {
-    // create li tag for each high score
-    var liTag = document.createElement("li");
-    liTag.textContent = score.initials + " - " + score.score;
+    let hsInitials = initials.value
+    let hsScore = finalscore.innerText
 
-    // display on page
-    var olEl = document.getElementById("highscores");
-    olEl.appendChild(liTag);
-  });
+    highscores.push({ Initials: hsInitials, score: hsScore })
+
+    localStorage.setItem("highscores", JSON.stringify(highscores))
+
+
+
+    function getHighScores() {
+      let savedHighScores = JSON.parse(localStorage.getItem("highscores"))
+
+      if (savedHighScores) {
+        highscores = savedHighScores;
+        displayHighScores()
+      } else {
+        highscores = [];
+      }
+    }
+
+    function displayHighScores() {
+      for (let i = 0; i < highScores.length; i++) {
+        let li = document.createElement("li");
+
+        li.innerHTML = "Initials:" + highScores[i].Initials + "    Score:" + highScores[i].Score;
+        highScoreList.append(li);
+      }
+    }
+    getHighScores()
+
+
+    Highscores.forEach(function (score) {
+      // create li tag for each high score
+      var liTag = document.createElement("li");
+      liTag.textContent = score.initials + " - " + score.score;
+
+      // display on page
+      var olEl = document.getElementById("highscores");
+      olEl.appendChild(liTag);
+    });
+  }
+
+  function clearscores() {
+    localStorage.removeItem("highscores");
+    location.reload();
+  }
+
+  document.getElementById("clear").onclick = clearscores;
+
+  displayHighscores();
+
 }
-
-function clearHighscores() {
-  localStorage.removeItem("highscores");
-  location.reload();
-}
-
-document.getElementById("clear").onclick = clearHighscores;
-
-printHighscores();
