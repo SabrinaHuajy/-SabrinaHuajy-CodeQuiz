@@ -82,13 +82,9 @@ function questionchoice() {
   console.log(this.value);
   if (this.value !== questions[questioncounter].correctanswer) {
     console.log(questions[questioncounter].correctanswer);
-    // penalize time
+    // penalise time
     timesection.innerHTML -= 10;
-    time -= 10;
-
-    if (time < 0) {
-      time = 0;
-    }
+    // time -= 10;
 
     answerfeedback.textContent = "Wrong!";
     wrongBeat.play();
@@ -128,7 +124,7 @@ function addscore(event) {
       JSON.parse(window.localStorage.getItem("highscores")) || [];
 
     var newscore = {
-      score: time,
+      score: score,
       initials: initials
     };
 
@@ -137,12 +133,12 @@ function addscore(event) {
     window.localStorage.setItem("highscores", JSON.stringify(highscores));
 
 
-    var scores = JSON.parse(localStorage.getItem("scores")) || []
-    scores.push({
-      initials,
-      score
-    })
-    localStorage.setItem("scores", JSON.stringify(scores));
+    // var scores = JSON.parse(localStorage.getItem("scores")) || []
+    // scores.push({
+    //   initials,
+    //   score
+    // })
+    // localStorage.setItem("scores", JSON.stringify(scores));
 
     location.href = "highscores.html";
   }
@@ -161,38 +157,38 @@ startbutton.addEventListener("click", startquiz);
 
 // track changes of the score 
 
-function checkAnswers() {
+// function checkAnswers() {
 
 
-  // questions = document.forms.questions.elements;
+//   // questions = document.forms.questions.elements;
 
-  correctanswer = questions[0].correctanswer;
-  console.log(correctanswer)
+//   correctanswer = questions[0].correctanswer;
+//   console.log(correctanswer)
 
-  if (correctanswer == "4.numbers") {
+//   if (correctanswer == "4.numbers") {
 
-    score += 1;
-  }
+//     score += 1;
+//   }
 
-  correctanswer = questions[1].correctanswer;
-  if (correctanswer == "3.parenthesis") {
+//   correctanswer = questions[1].correctanswer;
+//   if (correctanswer == "3.parenthesis") {
 
-    score += 1;
-  }
-  correctanswer = questions[2].correctanswer;
-  if (correctanswer == "4.all of the above") {
+//     score += 1;
+//   }
+//   correctanswer = questions[2].correctanswer;
+//   if (correctanswer == "4.all of the above") {
 
-    score += 1;
-  }
-  correctanswer = questions[3].correctanswer;
-  if (correctanswer == "1.commas") {
-    score += 1;
-  }
-  console.log(score)
+//     score += 1;
+//   }
+//   correctanswer = questions[3].correctanswer;
+//   if (correctanswer == "1.commas") {
+//     score += 1;
+//   }
+//   console.log(score)
 
   // showendscreen(score);
 
-}
+// }
 
 
 // // function showendscreen(score) {
@@ -200,62 +196,62 @@ function checkAnswers() {
 //   feedback = document.getElementsByTagName("form")[0]
 // }
 
-function printHighscores() {
-  // either get scores from localstorage or set to empty array
-  var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+// function printHighscores() {
+//   // either get scores from localstorage or set to empty array
+//   var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
 
-  function saveInfo(event) {
-    event.preventDefault()
+//   function saveInfo(event) {
+//     event.preventDefault()
 
-    let hsInitials = initials.value
-    let hsScore = finalscore.innerText
+//     let hsInitials = initials.value
+//     let hsScore = finalscore.innerText
 
-    highscores.push({ Initials: hsInitials, score: hsScore })
+//     highscores.push({ Initials: hsInitials, score: hsScore })
 
-    localStorage.setItem("highscores", JSON.stringify(highscores))
-
-
-
-    function getHighScores() {
-      let savedHighScores = JSON.parse(localStorage.getItem("highscores"))
-
-      if (savedHighScores) {
-        highscores = savedHighScores;
-        displayHighScores()
-      } else {
-        highscores = [];
-      }
-    }
-
-    function displayHighScores() {
-      for (let i = 0; i < highscores.length; i++) {
-        let li = document.createElement("li");
-
-        li.innerHTML = "Initials:" + highscores[i].Initials + "    Score:" + highScores[i].Score;
-        savedHighScores.append(li);
-      }
-    }
-    getHighScores()
+//     localStorage.setItem("highscores", JSON.stringify(highscores))
 
 
-    highscores.forEach(function (score) {
-      // create li tag for each high score
-      var liTag = document.createElement("li");
-      liTag.textContent = score.initials + " - " + score.score;
 
-      // display on page
-      var olEl = document.getElementById("highscores");
-      olEl.appendChild(liTag);
-    });
-  }
+//     function getHighScores() {
+//       let savedHighScores = JSON.parse(localStorage.getItem("highscores"))
 
-  function clearscores() {
-    localStorage.removeItem("highscores");
-    location.reload();
-  }
+//       if (savedHighScores) {
+//         highscores = savedHighScores;
+//         displayHighScores()
+//       } else {
+//         highscores = [];
+//       }
+//     }
 
-  document.getElementById("clear").onclick = clearscores;
+//     function displayHighScores() {
+//       for (let i = 0; i < highscores.length; i++) {
+//         let li = document.createElement("li");
 
-  displayHighscores();
+//         li.innerHTML = "Initials:" + highscores[i].Initials + "    Score:" + highScores[i].Score;
+//         savedHighScores.append(li);
+//       }
+//     }
+//     getHighScores()
 
-}
+
+//     highscores.forEach(function (score) {
+//       // create li tag for each high score
+//       var liTag = document.createElement("li");
+//       liTag.textContent = score.initials + " - " + score.score;
+
+//       // display on page
+//       var olEl = document.getElementById("highscores");
+//       olEl.appendChild(liTag);
+//     });
+//   }
+
+//   function clearscores() {
+//     localStorage.removeItem("highscores");
+//     location.reload();
+//   }
+
+//   document.getElementById("clear").onclick = clearscores;
+
+//   displayHighscores();
+
+// }
