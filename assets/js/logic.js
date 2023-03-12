@@ -10,7 +10,7 @@ let wrongBeat = new Audio('../../assets/sfx/incorrect.wav');
 
 timesection.innerHTML = 100
 var questioncounter = -1
-var score = 0
+// var score = innerHTML.score
 
 console.table(questions[questioncounter])
 
@@ -82,8 +82,8 @@ function questionchoice() {
   if (this.value !== questions[questioncounter].correctanswer) {
     console.log(questions[questioncounter].correctanswer);
     // penalize time
-    timesection.innerHTML -= 5;
-    time -= 5;
+    timesection.innerHTML -= 10;
+    time -= 10;
 
     if (time < 0) {
       time = 0;
@@ -106,24 +106,52 @@ function questionchoice() {
   setTimeout(function () {
     answerfeedback.setAttribute("class", "feedback hide");
   }, 1000);
-
-  function showendscreen() {
-    document.querySelector("#end-screen").classList.remove("hide")
-
-  }
 }
+
+function showendscreen() {
+  document.querySelector("#end-screen").classList.remove("hide")
+  var finalscore = document.getElementById("final-score");
+  finalscore.textContent = time;
+}
+
 function addscore(event) {
   event.preventDefault()
   var initials = document.querySelector("#initials").value
-  var scores = JSON.parse(localStorage.getItem("scores")) || []
-  scores.push({
-    initials,
-    score
-  })
-  localStorage.setItem("scores", JSON.stringify(scores));
 
-  location.href = "highscores.html";
+  if (initials !== "") {
+    
+    var highscores =
+      JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+    var newscore = {
+      score: time,
+      initials: initials
+    };
+
+    // save to localstorage
+    highscores.push(newscore);
+    window.localStorage.setItem("highscores", JSON.stringify(highscores));
+
+
+    // var scores = JSON.parse(localStorage.getItem("scores")) || []
+    // scores.push({
+    //   initials,
+    //   score
+    // })
+    // localStorage.setItem("scores", JSON.stringify(scores));
+
+    location.href = "highscores.html";
+  }
 }
+
+function checkForEnter(event) {
+  if (event.key === "Enter") {
+    addscore();
+  }
+}
+
+initials.onkeyup = checkForEnter;
+
 document.querySelector("#submit").addEventListener("click", addscore);
 startbutton.addEventListener("click", startquiz);
 
@@ -167,3 +195,32 @@ function checkAnswers() {
 
 //   feedback = document.getElementsByTagName("form")[0]
 // }
+
+function printHighscores() {
+  // either get scores from localstorage or set to empty array
+  var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+
+  // sort highscores by score property in descending order
+  Highscores.sort(function(a, b) {
+    return b.score - a.score;
+  });
+
+  Highscores.forEach(function(score) {
+    // create li tag for each high score
+    var liTag = document.createElement("li");
+    liTag.textContent = score.initials + " - " + score.score;
+
+    // display on page
+    var olEl = document.getElementById("highscores");
+    olEl.appendChild(liTag);
+  });
+}
+
+function clearHighscores() {
+  localStorage.removeItem("highscores");
+  location.reload();
+}
+
+document.getElementById("clear").onclick = clearHighscores;
+
+printHighscores();
