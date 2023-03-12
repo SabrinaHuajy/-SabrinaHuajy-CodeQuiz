@@ -4,8 +4,8 @@ var timesection = document.querySelector("#time");
 var questiontoshow = document.querySelector("#question-title")
 var questionsection = document.querySelector("#questions");
 var answerfeedback = document.querySelector("#feedback");
-let correctBeat = new Audio('../../../assets/sfx/correct.wav');
-let wrongBeat = new Audio('../../../assets/sfx/incorrect.wav');
+let correctBeat = new Audio('../../assets/sfx/correct.wav');
+let wrongBeat = new Audio('../../assets/sfx/incorrect.wav');
 let finalscore = document.getElementById("final-score")
 let leaderBoard = document.getElementById("leaderboard")
 
