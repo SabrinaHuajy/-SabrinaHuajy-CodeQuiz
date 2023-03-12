@@ -227,17 +227,17 @@ function printHighscores() {
     }
 
     function displayHighScores() {
-      for (let i = 0; i < highScores.length; i++) {
+      for (let i = 0; i < highscores.length; i++) {
         let li = document.createElement("li");
 
-        li.innerHTML = "Initials:" + highScores[i].Initials + "    Score:" + highScores[i].Score;
-        highScoreList.append(li);
+        li.innerHTML = "Initials:" + highscores[i].Initials + "    Score:" + highScores[i].Score;
+        savedHighScores.append(li);
       }
     }
     getHighScores()
 
 
-    Highscores.forEach(function (score) {
+    highscores.forEach(function (score) {
       // create li tag for each high score
       var liTag = document.createElement("li");
       liTag.textContent = score.initials + " - " + score.score;
