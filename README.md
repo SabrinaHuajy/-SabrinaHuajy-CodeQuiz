@@ -29,7 +29,7 @@ When the game is over, it should display the score and give me, the user the abi
 
 The scores and initials would be stored locally and the user would be redirected to a highscore leaderboard which would present the scores and user initials in descending order. The user would be able to clear the scores on the leaderboard if they wish. 
 
-<img src="assets\images\screenshot3.PNG" alt="screenshot of webpage interface3">
+<img src="assets\images\screenshot4.PNG" alt="screenshot of webpage interface4">
 
 Link to the Code Quiz Website - https://sabrinahuajy.github.io/SabrinaHuajy-CodeQuiz/
 
