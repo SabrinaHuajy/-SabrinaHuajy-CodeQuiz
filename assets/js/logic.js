@@ -95,6 +95,7 @@ function questionchoice() {
     answerfeedback.style.color = "red";
     answerfeedback.style.fontSize = "100%";
   } else {
+    score++;
     answerfeedback.textContent = "Correct!";
     correctBeat.play();
     answerfeedback.style.color = "green";
@@ -136,12 +137,12 @@ function addscore(event) {
     window.localStorage.setItem("highscores", JSON.stringify(highscores));
 
 
-    // var scores = JSON.parse(localStorage.getItem("scores")) || []
-    // scores.push({
-    //   initials,
-    //   score
-    // })
-    // localStorage.setItem("scores", JSON.stringify(scores));
+    var scores = JSON.parse(localStorage.getItem("scores")) || []
+    scores.push({
+      initials,
+      score
+    })
+    localStorage.setItem("scores", JSON.stringify(scores));
 
     location.href = "highscores.html";
   }
@@ -170,22 +171,22 @@ function checkAnswers() {
 
   if (correctanswer == "4.numbers") {
 
-    score = score += 1;
+    score += 1;
   }
 
   correctanswer = questions[1].correctanswer;
   if (correctanswer == "3.parenthesis") {
 
-    score = score += 1;
+    score += 1;
   }
   correctanswer = questions[2].correctanswer;
   if (correctanswer == "4.all of the above") {
 
-    score = score += 1;
+    score += 1;
   }
   correctanswer = questions[3].correctanswer;
   if (correctanswer == "1.commas") {
-    score = score += 1;
+    score += 1;
   }
   console.log(score)
 
