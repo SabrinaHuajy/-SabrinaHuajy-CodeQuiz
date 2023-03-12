@@ -6,7 +6,7 @@ var questions = [{
   answer3: "3.alerts",
   answer4: "4.numbers",
 
-  correctanswer1: "4.numbers"
+  correctanswer: "4.numbers"
 
 }
   ,
@@ -18,7 +18,7 @@ var questions = [{
   answer3: "3.parenthesis",
   answer4: "4.square brackets",
 
-  correctanswer2: "3.parenthesis"
+  correctanswer: "3.parenthesis"
 
 }
   ,
@@ -30,7 +30,7 @@ var questions = [{
   answer3: "3.booleans",
   answer4: "4.all of the above",
 
-  correctanswer3: "4.all of the above"
+  correctanswer: "4.all of the above"
 
 }
   ,
@@ -42,7 +42,7 @@ var questions = [{
   answer3: "3.quotes",
   answer4: "4.parenthesis",
 
-  correctanswer4: "1.commas"
+  correctanswer: "1.commas"
 
 }
 

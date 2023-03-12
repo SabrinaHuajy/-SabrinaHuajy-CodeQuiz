@@ -77,15 +77,18 @@ function questionchoice(event) {
 }
 
 function questionchoice() {
-  // check if user guessed wrong
-  if (this.value !== questions[questioncounter].answer) {
+
+  console.log(this.value);
+  if (this.value !== questions[questioncounter].correctanswer) {
+    console.log(questions[questioncounter].correctanswer);
     // penalize time
+    timesection.innerHTML -= 5;
     time -= 5;
 
     if (time < 0) {
       time = 0;
     }
-    // display new time on page
+
     answerfeedback.textContent = "Wrong!";
     wrongBeat.play();
     answerfeedback.style.color = "red";
@@ -97,6 +100,7 @@ function questionchoice() {
     answerfeedback.style.fontSize = "100%";
   }
 
+  showquestion()
 
   answerfeedback.setAttribute("class", "feedback");
   setTimeout(function () {
@@ -130,29 +134,30 @@ function checkAnswers() {
 
   // questions = document.forms.questions.elements;
 
-  correctanswer1 = questions[0].correctanswer1;
-  console.log(correctanswer1)
+  correctanswer = questions[0].correctanswer;
+  console.log(correctanswer)
 
-  if (correctanswer1 == "4.numbers") {
-
-    score = score + 1;
-  }
-
-  correctanswer2 = questions[1].correctanswer2;
-  if (correctanswer2 == "3.parenthesis") {
+  if (correctanswer == "4.numbers") {
 
     score = score + 1;
   }
-  correctanswer3 = questions[2].correctanswer3;
-  if (correctanswer3 == "4.all of the above") {
+
+  correctanswer = questions[1].correctanswer;
+  if (correctanswer == "3.parenthesis") {
 
     score = score + 1;
   }
-  correctanswer4 = questions[3].correctanswer4;
-  if (correctanswer4 == "1.commas") {
+  correctanswer = questions[2].correctanswer;
+  if (correctanswer == "4.all of the above") {
+
+    score = score + 1;
+  }
+  correctanswer = questions[3].correctanswer;
+  if (correctanswer == "1.commas") {
     score = score + 1;
   }
   console.log(score)
+
   // showendscreen(score);
 
 }
