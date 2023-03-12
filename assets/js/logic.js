@@ -3,6 +3,10 @@ var startbutton = document.querySelector("#start");
 var timesection = document.querySelector("#time");
 var questiontoshow = document.querySelector("#question-title")
 var questionsection = document.querySelector("#questions");
+var answerfeedback = document.querySelector("#feedback");
+let correctBeat = new Audio('../../assets/sfx/correct.wav');
+let wrongBeat = new Audio('../../assets/sfx/incorrect.wav');
+
 
 timesection.innerHTML = 100
 var questioncounter = -1
@@ -27,7 +31,7 @@ function startquiz() {
 function showquestion() {
   questioncounter++
   if (!questions[questioncounter]) {
-    console.log("hello")
+    // console.log("hello")
 
     document.querySelector("#questions").classList.add("hide")
     return showendscreen()
@@ -72,11 +76,38 @@ function questionchoice(event) {
   // }
 }
 
-function showendscreen() {
-  document.querySelector("#end-screen").classList.remove("hide")
+function questionchoice() {
+  // check if user guessed wrong
+  if (this.value !== questions[questioncounter].answer) {
+    // penalize time
+    time -= 5;
 
+    if (time < 0) {
+      time = 0;
+    }
+    // display new time on page
+    answerfeedback.textContent = "Wrong!";
+    wrongBeat.play();
+    answerfeedback.style.color = "red";
+    answerfeedback.style.fontSize = "100%";
+  } else {
+    answerfeedback.textContent = "Correct!";
+    correctBeat.play();
+    answerfeedback.style.color = "green";
+    answerfeedback.style.fontSize = "100%";
+  }
+
+
+  answerfeedback.setAttribute("class", "feedback");
+  setTimeout(function () {
+    answerfeedback.setAttribute("class", "feedback hide");
+  }, 1000);
+
+  function showendscreen() {
+    document.querySelector("#end-screen").classList.remove("hide")
+
+  }
 }
-
 function addscore(event) {
   event.preventDefault()
   var initials = document.querySelector("#initials").value
@@ -85,7 +116,9 @@ function addscore(event) {
     initials,
     score
   })
-  localStorage.setItem("scores", JSON.stringify(scores))
+  localStorage.setItem("scores", JSON.stringify(scores));
+
+  location.href = "highscores.html";
 }
 document.querySelector("#submit").addEventListener("click", addscore);
 startbutton.addEventListener("click", startquiz);
