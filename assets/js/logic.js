@@ -22,6 +22,8 @@ function startquiz() {
   function mytimer() {
     if (timesection.innerHTML <= 0) {
       clearInterval(counter);
+      document.querySelector("#questions").classList.add("hide")
+      showendscreen()
     }
     else timesection.innerHTML -= 1
   }
