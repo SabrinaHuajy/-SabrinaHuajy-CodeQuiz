@@ -18,7 +18,7 @@ console.table(questions[questioncounter])
 
 function startquiz() {
   var counter = setInterval(mytimer, 1500)
-
+// let quiz end when time reaches 0
   function mytimer() {
     if (timesection.innerHTML <= 0) {
       clearInterval(counter);
