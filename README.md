@@ -3,6 +3,10 @@ A timed, multiple-choice coding quiz that can keep track of high scores and quiz
 
 As a front-end coding boot camp student, I want to take a timed quiz on JavaScript fundamentals that stores high scores hence I can gauge my progress compared to my peers.
 
+Link to the Code Quiz Website - https://sabrinahuajy.github.io/SabrinaHuajy-CodeQuiz/
+
+Hereby I present this timed coding quiz with multiple-choice questions. This app runs in the browser, and features dynamically updated HTML and CSS powered by JavaScript code that I wrote. It has a clean, polished, and responsive user interface. 
+
 The following animation demonstrates the application functionality:
 
 Given I am taking a code quiz, when I click the "Start Quiz" button, then a timer starts and I am presented with the first question.
@@ -31,9 +35,7 @@ The scores and initials would be stored locally and the user would be redirected
 
 <img src="assets\images\screenshot4.PNG" alt="screenshot of webpage interface4">
 
-Link to the Code Quiz Website - https://sabrinahuajy.github.io/SabrinaHuajy-CodeQuiz/
 
-Hereby I present this timed coding quiz with multiple-choice questions. This app runs in the browser, and features dynamically updated HTML and CSS powered by JavaScript code that I wrote. It has a clean, polished, and responsive user interface. 
 
 
 
